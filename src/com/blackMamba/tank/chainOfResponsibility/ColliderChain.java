@@ -29,9 +29,6 @@ public class ColliderChain implements Collide {
             }
 
         }
-//        add(new BulletTankCollider());
-//        add(new TankTankCollider());
-
     }
 
     public void add(Collide collide){

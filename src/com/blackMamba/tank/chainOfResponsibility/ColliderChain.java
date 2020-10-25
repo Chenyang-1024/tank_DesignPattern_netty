@@ -1,5 +1,6 @@
 package com.blackMamba.tank.chainOfResponsibility;
 
+import com.blackMamba.tank.PropertiesMgr;
 import com.blackMamba.tank.mediator.GameObject;
 
 import java.util.LinkedList;
@@ -16,8 +17,20 @@ public class ColliderChain implements Collide {
     public List<Collide> colliderChains = new LinkedList<>();
 
     public ColliderChain(){
-        add(new BulletTankCollider());
-        add(new TankTankCollider());
+        // 通过读取配置文件的方式加载碰撞检测器
+        String[] colliderArr = PropertiesMgr.prop.getProperty("colliderChains").split(",");
+        for (String className:colliderArr) {
+            try {
+                Class c = Class.forName(className);
+                Collide collide = (Collide) c.newInstance();
+                add(collide);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+        }
+//        add(new BulletTankCollider());
+//        add(new TankTankCollider());
 
     }
 

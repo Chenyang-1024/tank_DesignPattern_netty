@@ -14,8 +14,8 @@ import java.util.List;
  */
 public abstract class GameObject {
 
+    // 将游戏对象转移到GameObject中
     public int x , y;
-
     public java.util.List<Bullet> bulletList = new ArrayList<Bullet>();
     public java.util.List<Explode> explodeList = new ArrayList<>();
     public List<Tank> tankList = new ArrayList<>();

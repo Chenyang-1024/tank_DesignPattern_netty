@@ -4,11 +4,10 @@ import com.blackMamba.tank.*;
 import com.blackMamba.tank.mediator.GameObject;
 
 /**
- * Created by Black Mamba on 2020/10/25 15:53
+ * Created by Black Mamba on 2020/10/27 23:53
  *
  * @version 1.0
  * @description
- *      炮弹和坦克的碰撞检测
  */
 public class TankWallCollider implements Collide {
     @Override

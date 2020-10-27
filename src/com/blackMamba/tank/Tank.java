@@ -17,6 +17,8 @@ import java.util.Random;
 public class Tank extends GameObject {
     public Dir dir = Dir.UP;
 
+    public int preX , preY;
+
     public Group tGroup = Group.GOOD;
     private static int SPEED = 2;
     public static final int TANK_WIDTH = ResourceMgr.goodTankU.getWidth();
@@ -77,7 +79,14 @@ public class Tank extends GameObject {
         move();
     }
 
+    public void back(){
+        this.x = preX;
+        this.y = preY;
+    }
+
     private void move(){
+        preX = x;
+        preY = y;
         if(!moving) return;
         if(this.tGroup == Group.GOOD) {SPEED = 5;}
         else {SPEED = 2;}

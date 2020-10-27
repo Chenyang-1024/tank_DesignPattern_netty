@@ -9,6 +9,7 @@ import com.blackMamba.tank.mediator.GameObject;
  *
  * @version 1.0
  * @description
+ *      坦克和坦克的碰撞检测
  */
 public class TankTankCollider implements Collide {
 
@@ -18,8 +19,8 @@ public class TankTankCollider implements Collide {
             Tank tank1 = (Tank) o1;
             Tank tank2 = (Tank) o2;
             if(tank1.tGroup == tank2.tGroup && tank1.rectangle.intersects(tank2.rectangle)) {
-                tank1.moving = false;
-                tank2.moving = false;
+                tank1.back();
+                tank2.back();
                 return true;
             }
             if(tank1.tGroup != tank2.tGroup && tank1.rectangle.intersects(tank2.rectangle)){

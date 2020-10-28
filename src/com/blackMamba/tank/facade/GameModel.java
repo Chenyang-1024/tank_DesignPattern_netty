@@ -17,18 +17,31 @@ import java.util.Random;
  */
 public class GameModel {
 
+    public static final GameModel instance = new GameModel();
+
+    static {
+        instance.init();
+    }
+
+    public static GameModel getInstance(){
+        return instance;
+    }
+
     // 把tank对象封装起来，，体现面向对象编程
-    Tank myTank = new Tank(Integer.parseInt(PropertiesMgr.prop.getProperty("myTankX")),Integer.parseInt(PropertiesMgr.prop.getProperty("myTankY")), Dir.UP, Group.GOOD,this);
+    Tank myTank;
 
     public List<GameObject> gos = new ArrayList<>();
     // 引入责任链模式
     ColliderChain colliderChain = new ColliderChain();
 
-    public GameModel(){
+    private GameModel(){}
+
+    private void init(){
+        myTank = new Tank(Integer.parseInt(PropertiesMgr.prop.getProperty("myTankX")), Integer.parseInt(PropertiesMgr.prop.getProperty("myTankY")), Dir.UP, Group.GOOD);
+
         for(int i = new Random().nextInt(15); i>0; i--){
-            add(new Tank((i*80),150,Dir.DOWN,Group.BAD,this));
+            new Tank((i*80),150,Dir.DOWN,Group.BAD);
         }
-        add(myTank);
 
         add(new Wall(250,250,250,40));
         add(new Wall(600,250,250,40));

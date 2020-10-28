@@ -26,7 +26,6 @@ public class Tank extends GameObject {
     public Random random = new Random();
     public boolean moving = true;
     public boolean isDeath = false;
-    public GameModel gm = null;
     public Rectangle rectangle = new Rectangle();
 
     FireStrategy fireStrategy = null;
@@ -39,12 +38,11 @@ public class Tank extends GameObject {
         this.moving = moving;
     }
 
-    public Tank(int x, int y, Dir dir, Group tGroup, GameModel gm) {
+    public Tank(int x, int y, Dir dir, Group tGroup) {
         this.x = x;
         this.y = y;
         this.dir = dir;
         this.tGroup = tGroup;
-        this.gm = gm;
 
         rectangle.x = this.x;
         rectangle.y = this.y;
@@ -53,12 +51,14 @@ public class Tank extends GameObject {
 
         if(this.tGroup == Group.GOOD) fireStrategy=new DefaultFireStrategy();
         else fireStrategy = new DefaultFireStrategy();
+
+        GameModel.getInstance().add(this);
     }
 
     // 涉及到窗口需要重画时，会调用到该方法
     public void paint(Graphics g) {
         if(isDeath){
-            gm.remove(this);
+            GameModel.getInstance().remove(this);
         }
         switch (dir) {
             case UP:
@@ -136,7 +136,7 @@ public class Tank extends GameObject {
     }
 
     public void boom() {
-        gm.add(new Explode(this.x,this.y,gm));
+        GameModel.getInstance().add(new Explode(this.x,this.y));
     }
 
     public int getX() {

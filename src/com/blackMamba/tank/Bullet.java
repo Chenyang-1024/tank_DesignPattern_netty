@@ -18,29 +18,27 @@ public class Bullet extends GameObject {
     public static final int BULLET_HEIGHT = ResourceMgr.bulletD.getHeight();
     private Dir dir;
     public Group bGroup = Group.GOOD;
-    public GameModel gm = null;
     public Rectangle rectangle = new Rectangle();
 
     public boolean isDeath = false;
 
-    public Bullet(int x, int y, Dir dir, Group bGroup , GameModel gm) {
+    public Bullet(int x, int y, Dir dir, Group bGroup) {
         this.x = x;
         this.y = y;
         this.dir = dir;
         this.bGroup = bGroup;
-        this.gm = gm;
 
         rectangle.x = this.x;
         rectangle.y = this.y;
         rectangle.width = BULLET_WIDTH;
         rectangle.height = BULLET_HEIGHT;
 
-        gm.add(this);
+        GameModel.getInstance().add(this);
     }
 
     public void paint(Graphics g) {
         if(isDeath){
-            gm.remove(this);
+            GameModel.getInstance().remove(this);
         }
 
         switch (dir) {
@@ -88,30 +86,7 @@ public class Bullet extends GameObject {
 
     }
 
-    public void collideWith(Tank tank){
-        if(this.bGroup == tank.tGroup) return;
-        if(this.isDeath == false && tank.isDeath == false && rectangle.intersects(tank.rectangle)){
-            this.die();
-            tank.die();
-            tank.boom();
-            if(tank.tGroup == Group.GOOD) TankMain.gameFlag = false;
-        }
-    }
-
     public void die() {
         this.isDeath = true;
     }
-
-    public void setX(int x) {
-        this.x = x;
-    }
-
-    public void setY(int y) {
-        this.y = y;
-    }
-
-    public void setDir(Dir dir) {
-        this.dir = dir;
-    }
-
 }

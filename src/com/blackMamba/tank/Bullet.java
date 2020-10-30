@@ -16,6 +16,7 @@ public class Bullet extends GameObject {
     private static final int SPEED = 10;
     public static final int BULLET_WIDTH = ResourceMgr.bulletD.getWidth();
     public static final int BULLET_HEIGHT = ResourceMgr.bulletD.getHeight();
+
     private Dir dir;
     public Group bGroup = Group.GOOD;
     public Rectangle rectangle = new Rectangle();
@@ -27,6 +28,8 @@ public class Bullet extends GameObject {
         this.y = y;
         this.dir = dir;
         this.bGroup = bGroup;
+        this.width = BULLET_WIDTH;
+        this.height = BULLET_HEIGHT;
 
         rectangle.x = this.x;
         rectangle.y = this.y;

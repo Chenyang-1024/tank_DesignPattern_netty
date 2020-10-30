@@ -43,6 +43,8 @@ public class Tank extends GameObject {
         this.y = y;
         this.dir = dir;
         this.tGroup = tGroup;
+        this.width = TANK_WIDTH;
+        this.height = TANK_HEIGHT;
 
         rectangle.x = this.x;
         rectangle.y = this.y;

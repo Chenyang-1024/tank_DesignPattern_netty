@@ -13,9 +13,6 @@ import java.awt.*;
  */
 public class Explode extends GameObject {
 
-    private int x , y;
-
-
     public Explode(int x, int y) {
         this.x = x;
         this.y = y;
